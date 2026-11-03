@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>POPz — Gabriel Birkenmeyer</title>
+  <meta name="description" content="How I made POPz, a pop music party game for iPhone, in Unity 6.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html">Gabriel Birkenmeyer</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#about">About</a>
+        <a href="resume.pdf">Resume</a>
+        <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+        <a href="mailto:gabrielprado242@gmail.com">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== TOP ===================== -->
+    <section class="project-top">
+      <div class="wrap">
+        <a class="back" href="index.html#projects">Back to projects</a>
+        <h1>POPz: Pop Music Party Game</h1>
+        <p class="lede">A party game for iPhone that I designed, built and am publishing on my own, under my studio name Brado Games.</p>
+
+        <dl class="facts">
+          <div><dt>Role</dt><dd>Solo developer</dd></div>
+          <div><dt>Engine</dt><dd>Unity 6, C#</dd></div>
+          <div><dt>Platform</dt><dd>iPhone</dd></div>
+          <div><dt>Status</dt><dd>Coming soon to the App Store</dd></div>
+        </dl>
+
+        <img class="cover" src="images/popz-cover.png" alt="POPz cover image">
+      </div>
+    </section>
+
+    <!-- ===================== DETAILS ===================== -->
+    <section class="project-body">
+      <div class="wrap">
+
+        <h2>The game</h2>
+        <p>
+          Players pass one phone around a party. Each card is a pop music prompt from
+          one of four eras: the 90s, 2000s, 2010s or 2020s. A game is 40 cards long and
+          ends with a "most picked" screen, so everyone sees who got called out the most.
+        </p>
+
+        <!-- Your 5 App Store screenshots -->
+        <div class="shots">
+          <img src="images/popz-1.png" alt="Pick your pop era screen">
+          <img src="images/popz-2.png" alt="A New Rule card">
+          <img src="images/popz-3.png" alt="A vote card">
+          <img src="images/popz-4.png" alt="A pop trivia card">
+          <img src="images/popz-5.png" alt="Game over screen showing who got picked the most">
+        </div>
+
+        <h2>What I did</h2>
+        <ul>
+          <li>Designed the game and wrote all 257 prompts</li>
+          <li>Programmed it in Unity 6 and C#, including New Rule cards that stay active for a few rounds</li>
+          <li>Made the pop-art UI, app icon, splash screen and sound effects</li>
+          <li>Tested every build on a real iPhone</li>
+          <li>Wrote the privacy policy, App Store screenshots and store listing</li>
+        </ul>
+
+        <h2>Problem I solved: repetitive cards</h2>
+        <p>
+          In playtests, too many prompts were the same idea: "name five songs by...".
+          I rewrote them into different kinds of challenges, like a timed Song Rush,
+          fandom battles, humming a song for others to guess, and song charades.
+          Now every card feels like a small surprise.
+        </p>
+
+        <h2>Problem I solved: building for iPhone without a Mac</h2>
+        <p>
+          iOS games normally need a Mac with Xcode, and I work on a Windows laptop.
+          I set up a GitHub Actions workflow: I export the project from Unity, upload it,
+          and a cloud Mac builds the app for me. I install that build on my iPhone to test.
+          The same workflow will create the signed builds for TestFlight and the App Store.
+        </p>
+
+        <h2>What I learned</h2>
+        <ul>
+          <li>Content design matters as much as code in a party game.</li>
+          <li>Testing on a real phone catches problems the editor never shows.</li>
+          <li>Shipping a game includes a lot of work outside the engine.</li>
+        </ul>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© 2026 Gabriel Birkenmeyer</div>
+  </footer>
+
+  <script src="lightbox.js"></script>
+</body>
+</html>

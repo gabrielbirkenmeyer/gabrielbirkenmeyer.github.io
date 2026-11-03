@@ -1,0 +1,223 @@
+/* =========================================================
+   Gabriel Birkenmeyer — portfolio
+   Simple layout: intro + clickable project pictures.
+   Each picture opens that project's own page.
+   ========================================================= */
+
+/* ---------- 1. Colors and sizes (change the look here) ---------- */
+:root {
+  --bg:      #F4F4F1;   /* page background */
+  --text:    #222524;   /* main text */
+  --muted:   #62676A;   /* secondary text */
+  --line:    #D6D7D2;   /* thin lines and image borders */
+  --accent:  #E0631A;   /* links and hover color */
+
+  --font: "Archivo", system-ui, sans-serif;
+  --max: 1040px;        /* max page width */
+  --gutter: 24px;
+}
+
+/* ---------- 2. Base ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--text); }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+h1, h2, h3 {
+  font-weight: 800;
+  font-stretch: 115%;          /* a bit wider for headings */
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+}
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1em; max-width: 65ch; }
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- 3. Header ---------- */
+.site-header { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.site-header .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.logo {
+  font-weight: 800;
+  font-stretch: 115%;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+.site-nav { display: flex; flex-wrap: wrap; gap: 20px; }
+.site-nav a { color: var(--text); text-decoration: none; font-weight: 600; }
+.site-nav a:hover { color: var(--accent); }
+
+/* ---------- 4. Home page intro ---------- */
+.intro { padding: 56px 0 40px; }
+.intro p { color: var(--muted); font-size: 1.15rem; }
+
+/* ---------- 5. Project pictures on the home page ---------- */
+.projects { padding-bottom: 64px; }
+.projects h2 { margin-top: 24px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+/* the featured project takes the full width */
+.card.featured { grid-column: 1 / -1; }
+
+.card {
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+}
+.card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  transition: opacity 0.15s;
+}
+.card:hover img { opacity: 0.85; }
+.card:hover h3 { color: var(--accent); }
+.card h3 { margin: 14px 0 4px; }
+.card .role { color: var(--muted); font-size: 0.95rem; margin: 0; }
+
+/* ---------- 6. About (home page) ---------- */
+.about { padding: 48px 0 64px; border-top: 1px solid var(--line); }
+.about .tools { color: var(--muted); }
+
+/* ---------- 7. Project pages ---------- */
+.project-top { padding: 40px 0 24px; }
+.back { display: inline-block; margin-bottom: 20px; font-weight: 600; }
+.project-top .lede { font-size: 1.15rem; color: var(--muted); }
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin: 24px 0 32px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.facts div { min-width: 140px; }
+.facts dt { color: var(--muted); font-size: 0.85rem; }
+.facts dd { margin: 0; font-weight: 600; }
+
+.cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.project-body { padding: 40px 0 64px; }
+.project-body h2 { margin-top: 1.6em; }
+.project-body h2:first-child { margin-top: 0; }
+.project-body ul { max-width: 65ch; padding-left: 1.2em; }
+.project-body li { margin-bottom: 0.4em; }
+
+/* screenshots row (phone screenshots for POPz) */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+.shots img {
+  aspect-ratio: 1290 / 2796;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+/* wide screenshots (for PC/Unity games) */
+.shots.wide { grid-template-columns: repeat(2, 1fr); }
+.shots.wide img { aspect-ratio: 16 / 9; border-radius: 0; }
+
+/* screenshots with a caption under them (before / after pairs) */
+.shots figure { margin: 0; }
+.shots figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+/* top-down map shots are less wide, so they keep more of the picture */
+.shots.wide.map img { aspect-ratio: 3 / 2; }
+
+/* ---------- 8. Image viewer (lightbox.js) ---------- */
+.zoomable { cursor: zoom-in; }
+
+.viewer {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: 94vw;
+  max-height: 94vh;
+  overflow: visible;
+}
+.viewer::backdrop { background: rgba(10, 10, 12, 0.88); }
+.viewer img {
+  max-width: 94vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+.viewer-close {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--text);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+.viewer-close:hover { background: var(--accent); color: #fff; }
+
+/* ---------- 9. Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 24px 0 40px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- 10. Phones ---------- */
+@media (max-width: 700px) {
+  :root { --gutter: 16px; }
+  body { font-size: 17px; }
+  .grid { grid-template-columns: 1fr; gap: 28px; }
+  .shots { grid-template-columns: repeat(3, 1fr); }
+  .shots img:nth-child(n+4) { display: none; }
+  .shots.wide { grid-template-columns: 1fr; }
+  .shots.wide img:nth-child(n+4) { display: block; }
+}
