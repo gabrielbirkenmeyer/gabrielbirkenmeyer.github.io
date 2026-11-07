@@ -189,6 +189,22 @@ p { margin: 0 0 1em; max-width: 65ch; }
 }
 .videos figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
 
+/* playtest log table (what I found / what I changed) */
+.log {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 0.95rem;
+}
+.log th, .log td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.log th { font-weight: 700; border-bottom: 2px solid var(--text); }
+.log td:first-child { width: 42%; color: var(--muted); }
+
 /* ---------- 8. Image viewer (lightbox.js) ---------- */
 .zoomable { cursor: zoom-in; }
 
