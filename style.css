@@ -167,6 +167,28 @@ p { margin: 0 0 1em; max-width: 65ch; }
 /* top-down map shots are less wide, so they keep more of the picture */
 .shots.wide.map img { aspect-ratio: 3 / 2; }
 
+/* model turnaround shots (the chicken and the egg) */
+.shots.models { grid-template-columns: repeat(4, 1fr); }
+.shots.models img { aspect-ratio: 1 / 1; border-radius: 0; }
+
+/* gameplay videos */
+.videos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+.videos figure { margin: 0; }
+.videos video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #000;
+  border: 1px solid var(--line);
+}
+.videos figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+
 /* ---------- 8. Image viewer (lightbox.js) ---------- */
 .zoomable { cursor: zoom-in; }
 
@@ -220,4 +242,6 @@ p { margin: 0 0 1em; max-width: 65ch; }
   .shots img:nth-child(n+4) { display: none; }
   .shots.wide { grid-template-columns: 1fr; }
   .shots.wide img:nth-child(n+4) { display: block; }
+  .shots.models { grid-template-columns: repeat(2, 1fr); }
+  .videos { grid-template-columns: 1fr; }
 }

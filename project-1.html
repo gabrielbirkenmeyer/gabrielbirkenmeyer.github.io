@@ -33,13 +33,13 @@
       <div class="wrap">
         <a class="back" href="index.html#projects">Back to projects</a>
         <h1>PoPo</h1>
-        <p class="lede">An online multiplayer arena game where chickens launch rubber chickens at each other, built around one barnyard map I designed.</p>
+        <p class="lede">An online multiplayer arena game where chickens throw eggs at each other, built around one barnyard map I designed.</p>
 
         <dl class="facts">
           <div><dt>Role</dt><dd>Level design, development</dd></div>
           <div><dt>Engine</dt><dd>Unity 6, C#, Photon Fusion 2</dd></div>
           <div><dt>Course</dt><dd>CS 355, Pace University</dd></div>
-          <div><dt>Status</dt><dd>In progress: graybox done</dd></div>
+          <div><dt>Status</dt><dd>In progress: playable chicken</dd></div>
         </dl>
 
         <img class="cover" src="images/after_silotop.png" alt="The Barnyard map seen from the top of the silo, with the mud pond, the Golden Egg and the new water tank">
@@ -151,17 +151,84 @@
           </figure>
         </div>
 
+        <!-- ===================== THE CHICKEN ===================== -->
+        <h2>Building the chicken from simple shapes</h2>
+        <p>
+          I can't draw or animate yet, so I built the player chicken the same way I grayboxed the map:
+          out of spheres and cubes. The red comb and orange beak make the front easy to read from far
+          away, so players can tell which way another chicken is facing. The egg players throw is a
+          stretched sphere in a warm off-white, so it stands out against the gray ground.
+          Because the gameplay parts (collider, camera, launcher) are separate from the shapes,
+          I can swap in a final model later without changing how the game plays.
+        </p>
+
+        <div class="shots models">
+          <figure>
+            <img src="images/chicken1.png" alt="The placeholder chicken from the side">
+            <figcaption>Side view</figcaption>
+          </figure>
+          <figure>
+            <img src="images/chicken2.png" alt="The placeholder chicken from behind">
+            <figcaption>From the player camera's angle</figcaption>
+          </figure>
+          <figure>
+            <img src="images/chicken3.png" alt="The placeholder chicken from the front">
+            <figcaption>Front view</figcaption>
+          </figure>
+          <figure>
+            <img src="images/egg1.png" alt="The egg projectile">
+            <figcaption>The egg players throw</figcaption>
+          </figure>
+        </div>
+
+        <h2>Playable: the chicken on the map</h2>
+        <p>
+          The chicken runs with WASD, turns with the mouse, jumps, and can glide by holding Space in the air.
+          A third-person camera follows it. I tuned the speed so crossing the map takes about 20 seconds:
+          fast enough to get back into the fight after a respawn, slow enough that the map doesn't feel small.
+        </p>
+
+        <div class="videos">
+          <figure>
+            <video src="videos/chicken_gameplay1.mp4" poster="images/chicken_gameplay1_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>Running through the yard to the mud pond and the Golden Egg</figcaption>
+          </figure>
+          <figure>
+            <video src="videos/chicken_gameplay2.mp4" poster="images/chicken_gameplay2_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>Moving between cover near the cornfield</figcaption>
+          </figure>
+        </div>
+
+        <h2>Problem I solved: the chicken spun when it hit walls</h2>
+        <p>
+          Running into a wall at an angle made the chicken twist around, so it felt like the walls
+          were grabbing it. Collisions were adding spin, and friction made the chicken stick to the
+          wall. Now only the mouse can turn the chicken, and its collider has no friction, so it
+          slides along walls instead.
+        </p>
+
+        <h2>Problem I solved: eggs flew through cover</h2>
+        <p>
+          In the class project I started from, shots only checked for players and passed straight
+          through everything else. That would have made all the cover in my map useless. Now an egg
+          breaks on the first wall, hay bale or patch of ground it touches. Eggs also fly in an arc,
+          so they reach about 25 meters on flat ground: the silo still gets extra range from its
+          height, but it can't control the whole map.
+        </p>
+
         <h2>What I did so far</h2>
         <ul>
           <li>Wrote the design doc and drew the map layout: three lanes, six spawn points, one power-up</li>
           <li>Built the full graybox in Unity: barn with hayloft and ramp, silo, mud pond, cornfield and cover</li>
           <li>Reviewed it from four player viewpoints and from above, then fixed sightlines and cover gaps</li>
           <li>Started from my class multiplayer project (Photon Fusion), so players can already join a room together</li>
+          <li>Built a placeholder chicken and egg from simple shapes, with colors that make the front and the projectile easy to read</li>
+          <li>Replaced the class tank controls with chicken movement: run, turn, jump and glide, with a third-person camera</li>
+          <li>Made eggs arc and break on cover, so the map's cover actually protects players</li>
         </ul>
 
         <h2>What's next</h2>
         <ul>
-          <li>Replace the test tank with a chicken that runs, jumps and has a third-person camera</li>
           <li>First online playtest with real players</li>
           <li>Make the mud pond and the Golden Egg easier to see from the ground</li>
           <li>Score, round timer, jump pads and the Golden Egg power-up</li>
