@@ -39,7 +39,7 @@
           <div><dt>Role</dt><dd>Level design, development</dd></div>
           <div><dt>Engine</dt><dd>Unity 6, C#, Photon Fusion 2</dd></div>
           <div><dt>Course</dt><dd>CS 355, Pace University</dd></div>
-          <div><dt>Status</dt><dd>In progress: first playtest done</dd></div>
+          <div><dt>Status</dt><dd>In progress: full matches with score and rounds</dd></div>
         </dl>
 
         <img class="cover" src="images/after_silotop.png" alt="The Barnyard map seen from the top of the silo, with the mud pond, the Golden Egg and the new water tank">
@@ -264,6 +264,68 @@
           </figure>
         </div>
 
+        <!-- ===================== GAME RULES ===================== -->
+        <h2>Turning it into a match: name tags, score and rounds</h2>
+        <p>
+          Until now, PoPo was chickens throwing eggs forever. To make it a real match, I added
+          name tags, a score for every player and 5-minute rounds with a winner.
+        </p>
+
+        <h2>Name tags</h2>
+        <p>
+          Every chicken shows its player's name, always turned toward the camera so it reads from
+          any angle. While testing, I turned on my own tag and saw it sat right on top of my
+          crosshair, so players only see other players' names, not their own.
+        </p>
+
+        <div class="shots wide">
+          <figure>
+            <img src="images/NameTag1.png" alt="Testing my own name tag: it floats over the crosshair">
+            <figcaption>Testing with my own tag on: it covers the crosshair</figcaption>
+          </figure>
+          <figure>
+            <img src="images/NameTag2.png" alt="Another player's name above their chicken in the distance">
+            <figcaption>Other players' names float above their chickens</figcaption>
+          </figure>
+        </div>
+
+        <h2>Score and rounds</h2>
+        <p>
+          Every egg remembers who threw it, and the thrower gets a knockout when it lands the last hit.
+          One player's game acts as the referee and runs a 5-minute clock that every player sees; if
+          that player leaves, another one takes over. Holding Tab shows the scoreboard, and when time
+          runs out everyone sees the winner for 10 seconds before a new round starts.
+        </p>
+
+        <div class="shots wide">
+          <figure>
+            <img src="images/Scoreboard1.png" alt="First version of the winner screen: the scoreboard text is squeezed and overlaps">
+            <figcaption>Before: the scoreboard text was squeezed and the winner text overlapped it</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Scoreboard2.png" alt="Fixed winner screen: player1 wins, scoreboard below">
+            <figcaption>After: timer, winner and scoreboard stacked so nothing overlaps</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Scoreboard_Fixed.png" alt="Winner screen with the crosshair hidden">
+            <figcaption>Final: the crosshair is hidden on the winner screen</figcaption>
+          </figure>
+        </div>
+
+        <h2>Second playtest: what I found and changed</h2>
+        <table class="log">
+          <thead>
+            <tr><th>What I found</th><th>What I changed</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Respawning deleted the chicken and made a new one, which would wipe its score</td><td>Respawning now teleports the same chicken, so it keeps its score, name and color</td></tr>
+            <tr><td>With many eggs in the air, a chicken could respawn with only 2 health</td><td>1.5 seconds of spawn protection, so late eggs can't hurt a chicken that just respawned</td></tr>
+            <tr><td>A player who joined late didn't see another chicken's color</td><td>Every chicken applies its current color as soon as it appears on someone's screen</td></tr>
+            <tr><td>At the start of a new round, every chicken appeared on the same spawn point</td><td>Each player gets their own spawn point at the start of a round</td></tr>
+            <tr><td>The crosshair sat on top of the scoreboard on the winner screen</td><td>The crosshair is hidden while the winner screen is up</td></tr>
+          </tbody>
+        </table>
+
         <h2>What I did so far</h2>
         <ul>
           <li>Wrote the design doc and drew the map layout: three lanes, six spawn points, one power-up</li>
@@ -275,13 +337,15 @@
           <li>Made eggs arc and break on cover, so the map's cover actually protects players</li>
           <li>Ran the first online playtest on two laptops and fixed aiming, the camera, spawns, silo access and falling through the map</li>
           <li>Set up version control with Git and GitHub, and moved the game to its own Photon account so it doesn't depend on the class one</li>
+          <li>Added name tags, a score for every player, 5-minute rounds, a scoreboard and a winner screen built with Unity's UI and TextMeshPro</li>
+          <li>Ran a second playtest and fixed respawning, spawn protection, color sync for late joiners and round-start spawns</li>
         </ul>
 
         <h2>What's next</h2>
         <ul>
           <li>Playtests with other players: where fights happen, whether people use the cornfield, and whether the silo is too strong</li>
           <li>Make the mud pond and the Golden Egg easier to see from the ground</li>
-          <li>Score, round timer, scoreboard, name tags and the Golden Egg power-up</li>
+          <li>The Golden Egg power-up (double damage for 10 seconds) and the mud pond that slows players down</li>
           <li>Art pass: barnyard props, lighting and sound</li>
         </ul>
 
