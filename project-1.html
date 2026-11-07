@@ -39,7 +39,7 @@
           <div><dt>Role</dt><dd>Level design, development</dd></div>
           <div><dt>Engine</dt><dd>Unity 6, C#, Photon Fusion 2</dd></div>
           <div><dt>Course</dt><dd>CS 355, Pace University</dd></div>
-          <div><dt>Status</dt><dd>In progress: playable chicken</dd></div>
+          <div><dt>Status</dt><dd>In progress: first playtest done</dd></div>
         </dl>
 
         <img class="cover" src="images/after_silotop.png" alt="The Barnyard map seen from the top of the silo, with the mud pond, the Golden Egg and the new water tank">
@@ -216,6 +216,54 @@
           height, but it can't control the whole map.
         </p>
 
+        <!-- ===================== PLAYTEST 1 ===================== -->
+        <h2>First online playtest</h2>
+        <p>
+          I built the game and ran it on two laptops connected online. I couldn't get other players
+          for this first round, so I controlled both chickens myself: one to play, one as a target.
+          Movement, feather colors and honks all synced well between the laptops. These are the
+          problems I found and how I fixed them:
+        </p>
+
+        <table class="log">
+          <thead>
+            <tr><th>What I found</th><th>What I changed</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Eggs flew over the other chicken at medium range</td><td>Flatter throw with lighter gravity, aiming up and down with the mouse, and a "+" crosshair</td></tr>
+            <tr><td>Aiming up pushed my chicken off the bottom of the screen</td><td>A camera that circles the chicken: aiming up moves it down, so the chicken stays in view. It also moves closer when a wall is behind it.</td></tr>
+            <tr><td>A knocked-out chicken could respawn right in front of the other player</td><td>Players now respawn at the spawn point farthest from everyone else</td></tr>
+            <tr><td>Nobody could reach the silo</td><td>A working jump pad that launches the chicken high enough to land on top</td></tr>
+            <tr><td>The chicken could fall into the silo and get stuck under its edge</td><td>Swapped the silo's and water tank's rounded colliders for ones that match their real shape</td></tr>
+            <tr><td>After the jump pad, the chicken fell through the ground</td><td>See below</td></tr>
+          </tbody>
+        </table>
+
+        <p>
+          One thing I kept on purpose: long throws still curve a little. These are chickens throwing
+          eggs, not soldiers aiming rifles, so a bit of wobble is part of the fun.
+        </p>
+
+        <h2>Problem I solved: falling through the map</h2>
+        <p>
+          After the jump pad, the chicken came down so fast that it passed through the thin ground
+          between two physics steps and ended up under the map, with nothing to bring it back. I gave
+          the ground a thick collider, made the chicken check for collisions between physics steps,
+          capped how fast it can fall, and added a kill zone: any chicken that falls below the map
+          respawns automatically.
+        </p>
+
+        <div class="videos">
+          <figure>
+            <video src="videos/fallingChicken.mp4" poster="images/fallingChicken_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>Before: after the jump pad, the chicken falls through the ground</figcaption>
+          </figure>
+          <figure>
+            <video src="videos/fallingChicken_Fixed.mp4" poster="images/fallingChicken_Fixed_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>After: jump pad to the silo and the water tank, landing safely every time</figcaption>
+          </figure>
+        </div>
+
         <h2>What I did so far</h2>
         <ul>
           <li>Wrote the design doc and drew the map layout: three lanes, six spawn points, one power-up</li>
@@ -225,13 +273,15 @@
           <li>Built a placeholder chicken and egg from simple shapes, with colors that make the front and the projectile easy to read</li>
           <li>Replaced the class tank controls with chicken movement: run, turn, jump and glide, with a third-person camera</li>
           <li>Made eggs arc and break on cover, so the map's cover actually protects players</li>
+          <li>Ran the first online playtest on two laptops and fixed aiming, the camera, spawns, silo access and falling through the map</li>
+          <li>Set up version control with Git and GitHub, and moved the game to its own Photon account so it doesn't depend on the class one</li>
         </ul>
 
         <h2>What's next</h2>
         <ul>
-          <li>First online playtest with real players</li>
+          <li>Playtests with other players: where fights happen, whether people use the cornfield, and whether the silo is too strong</li>
           <li>Make the mud pond and the Golden Egg easier to see from the ground</li>
-          <li>Score, round timer, jump pads and the Golden Egg power-up</li>
+          <li>Score, round timer, scoreboard, name tags and the Golden Egg power-up</li>
           <li>Art pass: barnyard props, lighting and sound</li>
         </ul>
 
