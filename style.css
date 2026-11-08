@@ -138,6 +138,11 @@ p { margin: 0 0 1em; max-width: 65ch; }
   border: 1px solid var(--line);
 }
 
+/* gameplay video at the top of a project page */
+.hero { margin: 0; }
+video.cover { display: block; background: #000; }
+.hero figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 8px; }
+
 .project-body { padding: 40px 0 64px; }
 .project-body h2 { margin-top: 1.6em; }
 .project-body h2:first-child { margin-top: 0; }
