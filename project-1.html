@@ -39,7 +39,7 @@
           <div><dt>Role</dt><dd>Level design, development</dd></div>
           <div><dt>Engine</dt><dd>Unity 6, C#, Photon Fusion 2</dd></div>
           <div><dt>Course</dt><dd>CS 355, Pace University</dd></div>
-          <div><dt>Status</dt><dd>In progress: full matches with score and rounds</dd></div>
+          <div><dt>Status</dt><dd>In progress: all game rules working (graybox)</dd></div>
         </dl>
 
         <figure class="hero">
@@ -329,6 +329,46 @@
           </tbody>
         </table>
 
+        <!-- ===================== PLAYING WITH A FRIEND ===================== -->
+        <h2>Playing with a friend</h2>
+        <p>
+          My first playtest with another person was a full round online on two laptops (the video at
+          the top of this page). My friend said it was fun: he got excited when I took the lead and had
+          to catch up, and the round ended in a tie. In the video we used every part of the map, but with
+          only two players we went long stretches without seeing each other. The Golden Egg is meant to
+          fix that by pulling everyone to the middle.
+        </p>
+
+        <!-- ===================== GOLDEN EGG + MUD ===================== -->
+        <h2>The Golden Egg and the mud pond</h2>
+        <p>
+          The Golden Egg floats on a small island in the middle of the mud pond. Whoever grabs it throws
+          gold eggs that do double damage for 10 seconds, and their name turns gold so everyone knows
+          who to run from. It comes back 30 seconds later. The catch is the mud: it cuts your speed in
+          half, so going for the egg means slowing down in the open, where the silo can see you.
+        </p>
+        <p>
+          In the clip below, my friend's chicken jumps onto the island, grabs the egg, and knocks out my
+          chicken while I'm still slowed down in the mud. That's the risk and reward I designed the middle
+          of the map around.
+        </p>
+
+        <div class="videos">
+          <figure>
+            <video src="videos/PoPo_goldenEgg_2players.mp4" poster="images/PoPo_goldenEgg_2players_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>Two players: grab the egg, gold name, knockout in the mud</figcaption>
+          </figure>
+          <figure>
+            <video src="videos/PoPo_goldenEgg_solo.mp4" poster="images/PoPo_goldenEgg_solo_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>Crossing the mud, climbing the island and throwing gold eggs</figcaption>
+          </figure>
+        </div>
+
+        <p>
+          One thing I noticed: only the name tag shows who has the power, so from far away or from behind
+          you can't tell. Next, I want the chicken itself to glow gold while it's powered up.
+        </p>
+
         <h2>What I did so far</h2>
         <ul>
           <li>Wrote the design doc and drew the map layout: three lanes, six spawn points, one power-up</li>
@@ -343,13 +383,13 @@
           <li>Added name tags, a score for every player, 5-minute rounds, a scoreboard and a winner screen built with Unity's UI and TextMeshPro</li>
           <li>Ran a second playtest and fixed respawning, spawn protection, color sync for late joiners and round-start spawns</li>
           <li>Played a full online round with a friend on two laptops (the video at the top of this page)</li>
+          <li>Added the Golden Egg power-up and the mud pond, completing all the game rules from my design doc</li>
         </ul>
 
         <h2>What's next</h2>
         <ul>
           <li>Playtests with other players: where fights happen, whether people use the cornfield, and whether the silo is too strong</li>
-          <li>Make the mud pond and the Golden Egg easier to see from the ground</li>
-          <li>The Golden Egg power-up (double damage for 10 seconds) and the mud pond that slows players down</li>
+          <li>Make a powered-up chicken glow gold, so players can spot it from any angle</li>
           <li>Art pass: barnyard props, lighting and sound</li>
         </ul>
 
