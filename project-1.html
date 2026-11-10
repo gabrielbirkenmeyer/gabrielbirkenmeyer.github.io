@@ -365,9 +365,96 @@
         </div>
 
         <p>
-          One thing I noticed: only the name tag shows who has the power, so from far away or from behind
-          you can't tell. Next, I want the chicken itself to glow gold while it's powered up.
+          One thing I noticed: only the name tag showed who had the power, so from far away or from behind
+          you couldn't tell. So now the whole chicken glows and pulses gold while it's powered up, and gold
+          eggs leave a gold splat (you can see it in the hen video below).
         </p>
+
+        <!-- ===================== THE HEN ===================== -->
+        <h2>From shapes to an animated hen</h2>
+        <p>
+          The shape chicken was great for testing, but it didn't move. For the real character I picked a
+          cartoon hen from the Unity Asset Store (Meshtint's Farm Hen) instead of a realistic one: PoPo is a
+          silly party shooter, and a round, cute hen is easier to read when it's small on the screen.
+          Because I had kept the gameplay parts (collider, camera, launcher) separate from the shapes,
+          swapping the model only meant replacing one child object. Movement, shooting and networking didn't change.
+        </p>
+        <p>
+          The hen has six animations: idle, run, jump, beak attack, take damage and spawn. Instead of drawing
+          a web of transitions in the Animator, a small script picks the right one from what the chicken is
+          doing: its speed, whether it's in the air, whether it just threw an egg, and whether its health went
+          down. The pack has no glide animation, so while gliding the script replays the jump flap in a loop.
+          The run animation also speeds up with the chicken, so the feet don't slide on the ground.
+        </p>
+
+        <div class="videos">
+          <figure>
+            <video src="videos/PoPo_hen_golden.mp4" poster="images/PoPo_hen_golden_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>The animated hen crossing the mud, grabbing the Golden Egg and throwing gold eggs</figcaption>
+          </figure>
+        </div>
+
+        <table class="log">
+          <thead>
+            <tr><th>What went wrong</th><th>What I changed</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>The Animator kept cycling through every animation</td><td>The pack's demo controller plays all animations in a loop, so I made my own controller with one state per animation</td></tr>
+            <tr><td>Run and idle flickered when the chicken slowed down</td><td>Smoothed the speed and used two limits: start running above one speed, stop below a lower one</td></tr>
+            <tr><td>The collider sat above the hen, so it floated and clipped into walls</td><td>Lined the model up with the collider, so the feet touch the ground and walls stop the body</td></tr>
+            <tr><td>After lining it up, jumping and animations stopped working</td><td>The ground check started exactly at the feet, inside the floor, so it never saw the ground. It now starts a little higher</td></tr>
+          </tbody>
+        </table>
+
+        <!-- ===================== THE CAMERA ===================== -->
+        <h2>Problem I solved: a camera that never loses the chicken</h2>
+        <p>
+          A shooter's camera has two jobs that fight each other: let the player aim anywhere, and always show
+          the player's own character. My first camera circled around the chicken. When you aimed up, it
+          dropped down behind the chicken, hit the floor, and pushed itself right into the chicken, so all you
+          saw was the tip of its comb.
+        </p>
+        <p>
+          I looked at how third-person shooters solve this and switched to an over-the-shoulder camera,
+          built with Unity's Cinemachine. The chicken sits a little to the left, so it never covers the
+          crosshair, and the camera slides closer when a wall gets in the way. Since the chicken is no longer
+          in the middle of the screen, eggs now fly from the beak toward whatever is under the crosshair.
+        </p>
+
+        <div class="videos">
+          <figure>
+            <video src="videos/PoPo_camera_hidden.mp4" poster="images/PoPo_camera_hidden_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>Before: aiming up hides the chicken (only the comb shows at the bottom)</figcaption>
+          </figure>
+          <figure>
+            <video src="videos/PoPo_camera_fixed.mp4" poster="images/PoPo_camera_fixed_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>After: shoulder camera, the chicken stays in view and eggs land on the crosshair</figcaption>
+          </figure>
+        </div>
+
+        <p>Getting there took a few tries:</p>
+        <table class="log">
+          <thead>
+            <tr><th>What went wrong</th><th>What I changed</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Keeping the camera high while aiming up still pushed the small chicken off the bottom of the screen</td><td>Dropped that idea: the camera has to circle around a point on the chicken, so the chicken can't leave the frame</td></tr>
+            <tr><td>The new camera looked like first person</td><td>It was dodging my own chicken as if it were a wall. My chicken has a different tag than other players, so I told the camera to ignore that tag</td></tr>
+            <tr><td>The chicken shook on screen while running</td><td>The camera was smoothing its movement while the chicken moves in physics steps. I turned off the smoothing and made the camera update once per frame</td></tr>
+            <tr><td>Couldn't aim high enough to hit players on the silo</td><td>Raised the aiming limit from 14 to 34 degrees up</td></tr>
+          </tbody>
+        </table>
+
+        <div class="videos">
+          <figure>
+            <video src="videos/PoPo_camera_firstperson.mp4" poster="images/PoPo_camera_firstperson_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>Bug: the camera avoided my own chicken and ended up inside its head</figcaption>
+          </figure>
+          <figure>
+            <video src="videos/PoPo_camera_jitter.mp4" poster="images/PoPo_camera_jitter_poster.jpg" controls muted playsinline preload="metadata"></video>
+            <figcaption>Bug: the chicken shaking left and right while running</figcaption>
+          </figure>
+        </div>
 
         <h2>What I did so far</h2>
         <ul>
@@ -384,13 +471,16 @@
           <li>Ran a second playtest and fixed respawning, spawn protection, color sync for late joiners and round-start spawns</li>
           <li>Played a full online round with a friend on two laptops (the video at the top of this page)</li>
           <li>Added the Golden Egg power-up and the mud pond, completing all the game rules from my design doc</li>
+          <li>Made powered-up chickens glow gold, and added egg splats when eggs break</li>
+          <li>Replaced the shape chicken with an animated cartoon hen, driven by a script that picks the animation from what the chicken is doing</li>
+          <li>Rebuilt the camera as an over-the-shoulder camera with Cinemachine, with eggs flying to the crosshair</li>
         </ul>
 
         <h2>What's next</h2>
         <ul>
           <li>Playtests with other players: where fights happen, whether people use the cornfield, and whether the silo is too strong</li>
-          <li>Make a powered-up chicken glow gold, so players can spot it from any angle</li>
-          <li>Art pass: barnyard props, lighting and sound</li>
+          <li>Art pass (in progress): replace the graybox blocks with farm props (barn, silo, coops, hay bales, fences, a pickup truck and a cornfield) without moving any cover I already tested</li>
+          <li>Lighting, sound and a main menu</li>
         </ul>
 
         <h2>What I learned so far</h2>
@@ -398,6 +488,11 @@
           A screenshot from the right spot shows problems faster than walking around the map.
           Looking from the silo made it obvious that one position was too strong, before any player
           ever had to suffer through it.
+        </p>
+        <p>
+          The camera taught me to look at how other games solve a problem before fixing it my own way.
+          My own fixes kept patching the symptom, while the shoulder camera that shooters use solved
+          the whole problem at once.
         </p>
 
       </div>
