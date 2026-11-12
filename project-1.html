@@ -456,6 +456,88 @@
           </figure>
         </div>
 
+        <!-- ===================== ART PASS ===================== -->
+        <h2>From graybox to barnyard: the art pass</h2>
+        <p>
+          With the gameplay tested, I replaced the gray blocks with farm art. My rule was to keep the graybox:
+          every block I playtested stays in the level as an invisible collider, and the art sits on top of it.
+          That way the cover, sightlines and jumps players already learned don't change, only the look does.
+          The props come from free Unity Asset Store packs (a low poly farm pack, a vehicle pack and a crops pack),
+          placed and scaled to fit my blocks.
+        </p>
+
+        <div class="shots wide map">
+          <figure>
+            <img src="images/after_topdown.png" alt="Top-down view of the final graybox">
+            <figcaption>Graybox, top-down</figcaption>
+          </figure>
+          <figure>
+            <img src="images/topdown_After-Arts.png" alt="Top-down view of the barnyard after the art pass">
+            <figcaption>After the art pass: same layout, now a farm with paths, a fence and landmarks around it</figcaption>
+          </figure>
+        </div>
+
+        <div class="shots wide">
+          <figure>
+            <img src="images/after_silotop.png" alt="View from the silo in the graybox">
+            <figcaption>Silo view, graybox</figcaption>
+          </figure>
+          <figure>
+            <img src="images/SiloTop_After-Arts.png" alt="View from the silo deck after the art pass">
+            <figcaption>Silo view, after: the pickup truck, water tower and hay piles sit where the blocks were</figcaption>
+          </figure>
+          <figure>
+            <img src="images/after_cornfield.png" alt="From the cornfield in the graybox">
+            <figcaption>Cornfield, graybox</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Cornfield_After-Arts.png" alt="From the cornfield after the art pass">
+            <figcaption>Cornfield, after: corn stalks the same height as the blocks, so it still hides a chicken</figcaption>
+          </figure>
+          <figure>
+            <img src="images/after_tractor.png" alt="Behind the tractor in the graybox">
+            <figcaption>Behind the tractor, graybox</figcaption>
+          </figure>
+          <figure>
+            <img src="images/Tractor_After-Arts.png" alt="Behind the pickup truck after the art pass">
+            <figcaption>The tractor block became a pickup truck parked on a dirt road</figcaption>
+          </figure>
+          <figure>
+            <img src="images/after_barndoor.png" alt="Out of the barn door in the graybox">
+            <figcaption>Barn door, graybox</figcaption>
+          </figure>
+          <figure>
+            <img src="images/BarnDoor_After-Arts.png" alt="Out of the barn door after the art pass">
+            <figcaption>Barn door, after: red plank walls, and the path leads through the gap between the coops and the hay</figcaption>
+          </figure>
+        </div>
+
+        <h2>Art decisions that changed the gameplay</h2>
+        <p>
+          Some art didn't fit my blocks, and each time I had to decide whether to change the art or the gameplay.
+        </p>
+        <table class="log">
+          <thead>
+            <tr><th>What I found</th><th>What I decided</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>The store barns are closed boxes with painted doors and no inside, but my barn is a playable space with a hayloft and a ramp</td><td>Kept my own barn walls and gave them a new look: red planks, white trim and a roof</td></tr>
+            <tr><td>Without a roof, players on the silo could shoot straight into the barn, but my design doc says the barn is a close-range brawl</td><td>Added a roof, kept below the silo deck. The barn is now a protected indoor fight</td></tr>
+            <tr><td>The chicken coop model has a ramp, and chickens ran up it onto the roof: a new high spot near the spawns</td><td>Blocked the ramp, so high ground stays limited to the silo and the hayloft</td></tr>
+            <tr><td>The water tower stands on legs, but its collider filled the gap under the tank, so players hit an invisible wall</td><td>Changed the collider to follow the real shape. Players can now run under the tower: a new path</td></tr>
+            <tr><td>The store silo has a dome on top, but players land on a flat silo top from the jump pad</td><td>Added a wooden lookout deck at the same 12 m height, so the jump pad works exactly as before</td></tr>
+            <tr><td>Chickens could run or glide off the edge of the map, and two spawns were close to it</td><td>Added a fence and an invisible wall around the whole map</td></tr>
+            <tr><td>The run from the pond to the jump pad and two other stretches had too little cover</td><td>Added three new pieces of cover: a hay pile on the jump pad route, barrels near the truck, and feed sacks in the southwest</td></tr>
+          </tbody>
+        </table>
+
+        <h2>The Golden Egg, now easy to spot</h2>
+        <p>
+          The Golden Egg is the prize of the map, so it has to stand out from far away. I put it on a straw nest
+          in the middle of the mud and made the egg shiny, glowing gold, while the straw and the mud stay dull.
+          The jump pad got bright colors for the same reason: things players use should never look like decoration.
+        </p>
+
         <h2>What I did so far</h2>
         <ul>
           <li>Wrote the design doc and drew the map layout: three lanes, six spawn points, one power-up</li>
@@ -474,13 +556,15 @@
           <li>Made powered-up chickens glow gold, and added egg splats when eggs break</li>
           <li>Replaced the shape chicken with an animated cartoon hen, driven by a script that picks the animation from what the chicken is doing</li>
           <li>Rebuilt the camera as an over-the-shoulder camera with Cinemachine, with eggs flying to the crosshair</li>
+          <li>Finished the art pass: farm props on top of the tested graybox, a barn with a roof, a fence around the map, and three new pieces of cover</li>
         </ul>
 
         <h2>What's next</h2>
         <ul>
           <li>Playtests with other players: where fights happen, whether people use the cornfield, and whether the silo is too strong</li>
-          <li>Art pass (in progress): replace the graybox blocks with farm props (barn, silo, coops, hay bales, fences, a pickup truck and a cornfield) without moving any cover I already tested</li>
-          <li>Lighting, sound and a main menu</li>
+          <li>Playtest the finished map with friends, especially the silo against the jump pad route</li>
+          <li>Lighting and atmosphere: sun angle, sky color and a little fog in the distance</li>
+          <li>Sound and a main menu</li>
         </ul>
 
         <h2>What I learned so far</h2>
