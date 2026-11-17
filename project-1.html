@@ -39,7 +39,7 @@
           <div><dt>Role</dt><dd>Level design, development</dd></div>
           <div><dt>Engine</dt><dd>Unity 6, C#, Photon Fusion 2</dd></div>
           <div><dt>Course</dt><dd>CS 355, Pace University</dd></div>
-          <div><dt>Status</dt><dd>In progress: all game rules working (graybox)</dd></div>
+          <div><dt>Status</dt><dd>In progress: art, sound, menu and match flow done</dd></div>
         </dl>
 
         <figure class="hero">
@@ -538,6 +538,74 @@
           The jump pad got bright colors for the same reason: things players use should never look like decoration.
         </p>
 
+        <!-- ===================== FEELS LIKE A GAME ===================== -->
+        <h2>Making it feel like a game: menu, sound and screens</h2>
+        <p>
+          With the map finished, I worked on everything around it. The menu now shows the real Barnyard slowly
+          turning behind a wooden sign, instead of the class test shapes. In the match, health is shown as three
+          eggs that crack when you get hit, the Golden Egg shows how many seconds of power are left, and the
+          winner gets an orange ribbon. I kept one style everywhere: the same two fonts, the same wood and the
+          same orange, so the menu and the match feel like one game.
+        </p>
+        <p>
+          Every action has a sound now: throwing, splats, hits, knockouts, the jump pad, the Golden Egg, a tick
+          in the last 10 seconds and a rooster when time is up. Sounds in the world are 3D, so you can hear where
+          a fight is happening before you see it.
+        </p>
+
+        <div class="shots wide">
+          <figure>
+            <img src="images/menu.png" alt="PoPo main menu: the farm in the background, the PoPo title and a wooden sign with name and room fields">
+            <figcaption>The menu: the real map turning in the background, with your name and room on a wooden sign</figcaption>
+          </figure>
+          <figure>
+            <img src="images/health-eggs-and-timer.png" alt="In-game view with three egg icons for health and a gold Golden Egg timer">
+            <figcaption>Health as three eggs, and the Golden Egg timer above them</figcaption>
+          </figure>
+          <figure>
+            <img src="images/winner-ribbon.png" alt="Winner screen with an orange ribbon and the scoreboard on a wooden sign">
+            <figcaption>The winner screen: an orange ribbon and the scoreboard on a wooden sign</figcaption>
+          </figure>
+        </div>
+
+        <!-- ===================== MATCH FLOW ===================== -->
+        <h2>Problem I solved: fair matches when players come and go</h2>
+        <p>
+          At first a round started as soon as one player joined, so you could be playing alone. Now the game
+          waits until two players are in, then counts down from 5 and starts everyone together with 0 points.
+          While you wait you can still run around and practice.
+        </p>
+        <p>
+          Playtesting showed two more problems. If a player left in the middle of a round, the match kept going
+          with one person. And a player who joined late had less time to score, which isn't fair. Now the match
+          stops with a "Not enough players" message, and a late player watches the match from a camera circling
+          above the farm until the next round starts. They don't appear on the results of a round they didn't play.
+        </p>
+
+        <div class="shots wide">
+          <figure>
+            <img src="images/starting-in-five.png" alt="Countdown text: Starting in 5">
+            <figcaption>Two players are in: everyone starts together after a 5-second countdown</figcaption>
+          </figure>
+          <figure>
+            <img src="images/waiting-for-the-next-match.png" alt="View from above the farm with the text Waiting for the next match">
+            <figcaption>A late player watches from above until the next round, so nobody joins with less time</figcaption>
+          </figure>
+        </div>
+
+        <h2>Third playtest: what I found and changed</h2>
+        <table class="log">
+          <thead>
+            <tr><th>What I found</th><th>What I changed</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>The chickens feel small next to the barn and the silo</td><td>I kept them at real-life size on purpose: the farm feels big from a chicken's point of view</td></tr>
+            <tr><td>If a player left mid-round, the match kept going with only one player</td><td>The match stops, shows "Not enough players!" and waits for someone to join</td></tr>
+            <tr><td>A player who joined mid-round had less time to score than everyone else</td><td>Late players watch from the sky and join at the next round</td></tr>
+            <tr><td>A player who joined during the winner screen showed up on that round's results</td><td>The results only list the players who played that round</td></tr>
+          </tbody>
+        </table>
+
         <h2>What I did so far</h2>
         <ul>
           <li>Wrote the design doc and drew the map layout: three lanes, six spawn points, one power-up</li>
@@ -557,14 +625,18 @@
           <li>Replaced the shape chicken with an animated cartoon hen, driven by a script that picks the animation from what the chicken is doing</li>
           <li>Rebuilt the camera as an over-the-shoulder camera with Cinemachine, with eggs flying to the crosshair</li>
           <li>Finished the art pass: farm props on top of the tested graybox, a barn with a roof, a fence around the map, and three new pieces of cover</li>
+          <li>Added lighting and atmosphere: a cartoon sky, a warm sun, distance fog and color grading</li>
+          <li>Added music and sound effects for every action, with 3D sound for the action in the world</li>
+          <li>Designed the game screens: fonts, health eggs, Golden Egg timer, a wooden scoreboard and a winner ribbon</li>
+          <li>Added a waiting room, a countdown, a "Not enough players" stop, and a sky camera for players who join late</li>
+          <li>Redesigned the main menu with the map in the background, Enter to join, and your last name and room remembered</li>
         </ul>
 
         <h2>What's next</h2>
         <ul>
-          <li>Playtests with other players: where fights happen, whether people use the cornfield, and whether the silo is too strong</li>
-          <li>Playtest the finished map with friends, especially the silo against the jump pad route</li>
-          <li>Lighting and atmosphere: sun angle, sky color and a little fog in the distance</li>
-          <li>Sound and a main menu</li>
+          <li>Playtests with more players: where fights happen, whether people use the cornfield, and whether the silo is too strong</li>
+          <li>Maybe push-to-talk voice chat, where you only hear the chickens near you</li>
+          <li>The final demo in class on December 17</li>
         </ul>
 
         <h2>What I learned so far</h2>
@@ -577,6 +649,13 @@
           The camera taught me to look at how other games solve a problem before fixing it my own way.
           My own fixes kept patching the symptom, while the shoulder camera that shooters use solved
           the whole problem at once.
+        </p>
+
+        <h2>Credits</h2>
+        <p class="credits">
+          Music: "Corncob" and "River Valley Breakdown" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0.
+          Hen model by Meshtint Studio. Farm models from Pandazole and Quaternius, pickup truck from Plug &amp; Play.
+          Skybox by Quantum Mana Studio. Fonts: Lilita One and Fredoka (Google Fonts).
         </p>
 
       </div>
