@@ -266,3 +266,21 @@ video.cover { display: block; background: #000; }
   .shots.models { grid-template-columns: repeat(2, 1fr); }
   .videos { grid-template-columns: 1fr; }
 }
+
+/* "Play in your browser" button on project pages */
+.play-btn {
+  display: inline-block;
+  margin: 8px 0 4px;
+  padding: 12px 22px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+}
+.play-btn:hover { background: var(--text); color: #fff; }
+.play-note { color: var(--muted); font-size: 0.9rem; margin: 6px 0 24px; }
+
+/* Small Brado Games logo (studio label) */
+.studio { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.9rem; margin: 4px 0 20px; }
+.studio img { height: 30px; width: auto; display: block; }
